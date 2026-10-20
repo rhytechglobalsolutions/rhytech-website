@@ -241,19 +241,19 @@ export const products = [
     "slug": "rhyshuttle",
     "title": "RhyShuttle",
     "tagline": "PLAY • IMPROVE • REPEAT",
-    "description": "Badminton club and tournament software that makes organizing play, tracking results and engaging players easier.",
+    "description": "Badminton club and tournament software — live at TCAOB in Brampton — that runs tournaments, session RSVP and dues, and player rankings in one organized app.",
     "features": [
-      "Live scoring",
-      "Automatic tournament brackets",
-      "Player stats and rankings",
-      "Session RSVP",
-      "Venue TV display"
+      "Tournaments with automatic brackets and points tables",
+      "Session RSVP with waitlists — no more WhatsApp polls",
+      "Dues board with exact per-player splits",
+      "TrueScore leaderboard and player rankings",
+      "Venue TV display for match day"
     ],
-    "url": "https://rhyshuttle-website-rhytechglobalsolutions.vercel.app",
+    "url": "https://tcaob-badminton-leaderboard.vercel.app",
     "closing": "Less admin around the game. More time to play.",
     "what": "What is RhyShuttle?",
-    "whatbody": "RhyShuttle is a badminton club and tournament platform built to streamline event operations and make player progress easier to follow.",
-    "helps": "Organizers can manage brackets and sessions while players and spectators follow scores, rankings and match progress. It is owned by Rhytech Global Solutions; TCAOB is a pilot customer."
+    "whatbody": "RhyShuttle is a badminton club and tournament platform built to run club operations — tournaments, weekly sessions, dues and rankings — and to make player progress easier to follow.",
+    "helps": "Organizers create tournaments with seeded brackets and points tables, confirm court bookings, split dues exactly and show standings on the venue TV. Players RSVP in one tap, follow the TrueScore leaderboard and check what they owe on the dues board. RhyShuttle is owned by Rhytech Global Solutions and is live at its first client club, the Tamil Cultural Association of Brampton (TCAOB). On the roadmap: live rally scoring, watch-from-home streaming and player profiles with analytics."
   },
   {
     "slug": "rhyseva",
