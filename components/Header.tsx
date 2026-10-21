@@ -139,7 +139,7 @@ const products: {
     description: "Badminton club and tournament management.",
     href: "/products/rhyshuttle",
     external:
-      "https://rhyshuttle-website-rhytechglobalsolutions.vercel.app",
+      "https://www.rhyshuttle.ca",
     icon: Trophy,
     symbol: "02",
   },
