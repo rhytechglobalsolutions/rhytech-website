@@ -21,13 +21,13 @@ export const metadata: Metadata = {
   description:
     "Discover Rhytech Global Solutions, an Ottawa, Ontario-based digital solutions company helping businesses with software development, web design, mobile applications, cloud services, SEO and digital marketing worldwide.",
   alternates: {
-    canonical: "https://rhytechglobalsolutions.ca/about",
+    canonical: "https://www.rhytechglobalsolutions.ca/about",
   },
   openGraph: {
     title: "About Rhytech Global Solutions",
     description:
       "Technology, creativity and strategy working together to move businesses forward.",
-    url: "https://rhytechglobalsolutions.ca/about",
+    url: "https://www.rhytechglobalsolutions.ca/about",
     siteName: "Rhytech Global Solutions",
     type: "website",
   },

@@ -42,6 +42,10 @@ export const metadata: Metadata = {
     title: "Rhytech Global Solutions",
     description: site.description,
   },
+  icons: {
+    icon: "/logo.webp",
+    shortcut: "/logo.webp",
+  },
   robots: {
     index: true,
     follow: true,

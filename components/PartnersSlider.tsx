@@ -4,12 +4,12 @@
 import Image from "next/image";
 
 const clients = [
-  { name: "canada", logo: "images/canada logo.webp" },
-  { name: "cruncy bite", logo: "/images/cruncy bite chciken logo.webp" },
-  { name: "Robertson Family Dentistry", logo: "/images/Robertson-family-dentistry-logo-300x77.png" },
-  { name: "Feo", logo: "/images/feo logo.webp" },
-  { name: "Love Again", logo: "/images/love again logo.webp" },
-  { name: "Tcab", logo: "/images/tcab logo.webp" },
+  { name: "canada", alt: "Canada Direct Imports logo", logo: "images/canada logo.webp" },
+  { name: "cruncy bite", alt: "Crunchy Bite Chicken logo", logo: "/images/cruncy bite chciken logo.webp" },
+  { name: "Robertson Family Dentistry", alt: "Robertson Family Dentistry logo", logo: "/images/Robertson-family-dentistry-logo-300x77.png" },
+  { name: "Feo", alt: "Feo Bobo Bubble Tea logo", logo: "/images/feo logo.webp" },
+  { name: "Love Again", alt: "Love Again Thrift Store logo", logo: "/images/love again logo.webp" },
+  { name: "Tcab", alt: "TCAOB — Tamil Cultural Association of Brampton logo", logo: "/images/tcab logo.webp" },
 ];
 
 export default function PartnersSlider() {
@@ -51,11 +51,7 @@ export default function PartnersSlider() {
               >
                 <Image
                   src={client.logo}
-                  alt={
-                    index < clients.length
-                      ? client.name
-                      : ""
-                  }
+                  alt={client.alt}
                   width={150}
                   height={56}
                   className="client-logo"

@@ -33,6 +33,34 @@ const products = [
   },
 ];
 
+const socials = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/rhytechglobalsolutions/",
+    icon: "/icons/white/instagram.svg",
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61576907321425",
+    icon: "/icons/white/facebook.svg",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/rhytech-global-solutions/",
+    icon: "/icons/white/linkedin.svg",
+  },
+  {
+    label: "Threads",
+    href: "https://www.threads.net/@rhytechglobalsolutions",
+    icon: "/icons/white/threads.svg",
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@RhytechGlobalSolutionsInc",
+    icon: "/icons/white/youtube.svg",
+  },
+];
+
 const companyLinks = [
   { label: "About Rhytech", href: "/about" },
   { label: "Insights & Resources", href: "/insights" },
@@ -150,6 +178,28 @@ export default function Footer() {
               thoughtful design and connected technology. Built around
               your business, your people and the outcomes that matter.
             </p>
+
+            <div className="mt-7 flex items-center gap-2.5">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Rhytech Global Solutions on ${social.label}`}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.04] transition duration-200 hover:border-violet-300/40 hover:bg-violet-500/15"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={social.icon}
+                    alt=""
+                    width={16}
+                    height={16}
+                    loading="lazy"
+                  />
+                </a>
+              ))}
+            </div>
 
             <a
               href={site.whatsapp}

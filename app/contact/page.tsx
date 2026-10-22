@@ -19,13 +19,13 @@ export const metadata: Metadata = {
   description:
     "Talk to Rhytech Global Solutions about software development, website design, mobile apps, cloud services, SEO and digital marketing. Based in Ottawa, Ontario, Canada, serving clients worldwide.",
   alternates: {
-    canonical: "https://rhytechglobalsolutions.ca/contact",
+    canonical: "https://www.rhytechglobalsolutions.ca/contact",
   },
   openGraph: {
     title: "Let's Build Something That Moves You Forward",
     description:
       "Discuss your goals with Rhytech Global Solutions. Get in touch about your next digital project.",
-    url: "https://rhytechglobalsolutions.ca/contact",
+    url: "https://www.rhytechglobalsolutions.ca/contact",
     siteName: "Rhytech Global Solutions",
     type: "website",
   },
@@ -51,6 +51,13 @@ const contactItems = [
     value: site.email,
     href: `mailto:${site.email}`,
     detail: "Share your brief or questions",
+  },
+  {
+    icon: Mail,
+    label: "Proposals & RFPs",
+    value: site.proposalsEmail,
+    href: `mailto:${site.proposalsEmail}`,
+    detail: "Send RFPs, proposals and partnership briefs",
   },
   {
     icon: MapPin,
