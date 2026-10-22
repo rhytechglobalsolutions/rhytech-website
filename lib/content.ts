@@ -1,10 +1,11 @@
 export const site = {
   "name": "Rhytech Global Solutions",
   "legalName": "Rhytech Global Solutions Inc.",
-  "url": "https://rhytechglobalsolutions.ca",
+  "url": "https://www.rhytechglobalsolutions.ca",
   "phone": "+1 (437) 870-7083",
   "phoneHref": "+14378707083",
   "email": "info@rhytechglobalsolutions.ca",
+  "proposalsEmail": "proposals@rhytechglobalsolutions.ca",
   "address": "302, 90 Woodridge Crescent, Ottawa, ON K2B 7T1, Canada",
   "hours": "Monday–Saturday, 9:00 am–7:00 pm; Sunday closed",
   "whatsapp": "https://wa.me/14378707083",
@@ -231,7 +232,7 @@ export const products = [
       "Beginner, Intermediate and Advanced stages",
       "First month free at launch"
     ],
-    "url": "https://rhyvidya-website-rhytechglobalsolutions.vercel.app",
+    "url": "https://www.rhyvidya.com/",
     "closing": "Learn Hindi with structure, support and room to grow.",
     "what": "What is RhyVidya?",
     "whatbody": "RhyVidya is an online Hindi teaching platform designed to make learning more accessible through live classes and a growing library of learning resources.",
@@ -249,7 +250,7 @@ export const products = [
       "TrueScore leaderboard and player rankings",
       "Venue TV display for match day"
     ],
-    "url": "https://tcaob-badminton-leaderboard.vercel.app",
+    "url": "https://www.rhyshuttle.ca/",
     "closing": "Less admin around the game. More time to play.",
     "what": "What is RhyShuttle?",
     "whatbody": "RhyShuttle is a badminton club and tournament platform built to run club operations — tournaments, weekly sessions, dues and rankings — and to make player progress easier to follow.",
@@ -267,7 +268,7 @@ export const products = [
       "Live video updates",
       "Support for families abroad"
     ],
-    "url": "https://rhyseva-website-rhytechglobalsolutions.vercel.app",
+    "url": "https://www.rhyseva.com/",
     "closing": "A trusted person back home.",
     "what": "What is RhySeva?",
     "whatbody": "RhySeva helps people living abroad coordinate selected in-person tasks for loved ones in India, with updates designed to create more visibility and peace of mind.",

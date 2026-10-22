@@ -129,7 +129,7 @@ const products: {
     description: "Online Hindi learning and live classes.",
     href: "/products/rhyvidya",
     external:
-      "https://rhyvidya-website-rhytechglobalsolutions.vercel.app",
+      "https://www.rhyvidya.com/",
     icon: GraduationCap,
     symbol: "01",
   },
@@ -139,7 +139,7 @@ const products: {
     description: "Badminton club and tournament management.",
     href: "/products/rhyshuttle",
     external:
-      "https://www.rhyshuttle.ca",
+      "https://www.rhyshuttle.ca/",
     icon: Trophy,
     symbol: "02",
   },
@@ -149,7 +149,7 @@ const products: {
     description: "Trusted services for families back home.",
     href: "/products/rhyseva",
     external:
-      "https://rhyseva-website-rhytechglobalsolutions.vercel.app",
+      "https://www.rhyseva.com/",
     icon: HeartHandshake,
     symbol: "03",
   },
