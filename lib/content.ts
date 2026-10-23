@@ -1,7 +1,7 @@
 export const site = {
   name: "Rhytech Global Solutions",
   legalName: "Rhytech Global Solutions Inc.",
-  url: "https://rhytechglobalsolutions.ca",
+  url: "https://www.rhytechglobalsolutions.ca",
   phone: "+1 (437) 870-7083",
   phoneHref: "+14378707083",
   email: "info@rhytechglobalsolutions.ca",
