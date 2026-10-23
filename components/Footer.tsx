@@ -12,7 +12,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { site } from "@/lib/site";
+import { site } from "@/lib/content";
 import { services } from "@/lib/content";
 
 const products = [
@@ -317,7 +317,7 @@ export default function Footer() {
                 <address className="pt-1 not-italic">
                   {site.name}
                   <br />
-                  {site.location}
+                  {site.address}
                 </address>
               </div>
 

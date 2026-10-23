@@ -5,7 +5,7 @@ import { site } from "@/lib/content";
 import { Manrope, Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
+import { GoogleAnalytics } from "@next/third-parties/google";
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-heading",
@@ -65,6 +65,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+         <GoogleAnalytics gaId="G-GGB4TP5KJC" />
       </body>
     </html>
   );

@@ -1,15 +1,15 @@
 export const site = {
-  "name": "Rhytech Global Solutions",
-  "legalName": "Rhytech Global Solutions Inc.",
-  "url": "https://www.rhytechglobalsolutions.ca",
-  "phone": "+1 (437) 870-7083",
-  "phoneHref": "+14378707083",
-  "email": "info@rhytechglobalsolutions.ca",
-  "proposalsEmail": "proposals@rhytechglobalsolutions.ca",
-  "address": "302, 90 Woodridge Crescent, Ottawa, ON K2B 7T1, Canada",
-  "hours": "Monday–Saturday, 9:00 am–7:00 pm; Sunday closed",
-  "whatsapp": "https://wa.me/14378707083",
-  "description": "Technology, digital experiences, digital marketing and search visibility solutions for businesses in Ontario and worldwide."
+  name: "Rhytech Global Solutions",
+  legalName: "Rhytech Global Solutions Inc.",
+  url: "https://rhytechglobalsolutions.ca",
+  phone: "+1 (437) 870-7083",
+  phoneHref: "+14378707083",
+  email: "info@rhytechglobalsolutions.ca",
+  address: "302, 90 Woodridge Crescent, Ottawa, ON K2B 7T1, Canada",
+  hours: "Monday–Saturday, 9:00 am–7:00 pm; Sunday closed",
+  whatsapp: "https://wa.me/14378707083",
+  description:
+    "Technology, digital experiences, digital marketing and search visibility solutions for businesses in Ontario and worldwide.",
 } as const;
 
 export const services = [
