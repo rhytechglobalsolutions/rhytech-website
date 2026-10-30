@@ -19,7 +19,8 @@ import { sanityClient } from "@/lib/client";
 
 export const revalidate = 60;
 
-const SITE_URL = "https://rhytechglobalsolutions.ca";
+const SITE_URL = "https://www.rhytechglobalsolutions.ca";
+const SITE_NAME = "Rhytech Global Solutions";
 
 type SanityImage = {
   _type?: string;
@@ -31,6 +32,7 @@ type SanityImage = {
   };
 };
 
+
 type Article = {
   _id: string;
   title: string;
@@ -39,6 +41,7 @@ type Article = {
   category?: string;
   author?: string;
   publishedAt?: string;
+  updatedAt?: string;
   readTime?: number;
   seoTitle?: string;
   seoDescription?: string;
@@ -83,6 +86,7 @@ function getReadTime(article: Article) {
     : "5 min read";
 }
 
+
 const articleQuery = `
   *[
     _type == "article" &&
@@ -97,6 +101,7 @@ const articleQuery = `
     category,
     author,
     publishedAt,
+    "_updatedAt": _updatedAt,
     readTime,
     seoTitle,
     seoDescription,
@@ -112,6 +117,7 @@ const articleQuery = `
     body
   }
 `;
+
 
 const relatedQuery = `
   *[
@@ -242,6 +248,7 @@ async function getArticle(slug: string): Promise<Article | null> {
   );
 }
 
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -253,12 +260,16 @@ export async function generateMetadata({
     if (!article) {
       return {
         title: "Article Not Found | Rhytech Insights",
-        robots: { index: false, follow: false },
+        robots: {
+          index: false,
+          follow: false,
+        },
       };
     }
 
     const title =
-      article.seoTitle || `${article.title} | Rhytech Insights`;
+      article.seoTitle ||
+      `${article.title} | Rhytech Insights`;
 
     const description =
       article.seoDescription ||
@@ -271,25 +282,66 @@ export async function generateMetadata({
     return {
       title,
       description,
+
       alternates: {
         canonical,
       },
+
       openGraph: {
         type: "article",
+        siteName: SITE_NAME,
         url: canonical,
         title,
         description,
-        publishedTime: article.publishedAt,
-        authors: [article.author || "Rhytech Editorial Team"],
-        images: cover
-          ? [{ url: cover, alt: article.coverImage?.alt || article.title }]
-          : undefined,
+
+        ...(article.publishedAt
+          ? { publishedTime: article.publishedAt }
+          : {}),
+
+        ...(article.updatedAt
+          ? { modifiedTime: article.updatedAt }
+          : {}),
+
+        authors: [SITE_NAME],
+
+        ...(cover
+          ? {
+              images: [
+                {
+                  url: cover,
+                  width: 1200,
+                  alt: article.coverImage?.alt || article.title,
+                },
+              ],
+            }
+          : {}),
       },
+
       twitter: {
         card: cover ? "summary_large_image" : "summary",
         title,
         description,
-        images: cover ? [cover] : undefined,
+
+        ...(cover
+          ? {
+              images: [
+                {
+                  url: cover,
+                  alt: article.coverImage?.alt || article.title,
+                },
+              ],
+            }
+          : {}),
+      },
+
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+        },
       },
     };
   } catch (error) {
@@ -297,10 +349,14 @@ export async function generateMetadata({
 
     return {
       title: "Rhytech Insights",
-      robots: { index: false, follow: false },
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 }
+
 
 export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params;
@@ -338,31 +394,59 @@ export default async function ArticlePage({ params }: PageProps) {
     article.excerpt ||
     `Explore ${article.title} from Rhytech Global Solutions.`;
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description,
-    mainEntityOfPage: canonical,
-    url: canonical,
-    datePublished: article.publishedAt || undefined,
-    dateModified: article.publishedAt || undefined,
-    author: {
-      "@type": "Organization",
-      name: article.author || "Rhytech Editorial Team",
-      url: SITE_URL,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Rhytech Global Solutions",
-      url: SITE_URL,
-    },
-    image: cover ? [cover] : undefined,
-    articleSection: article.category || "Insights",
-    timeRequired: `PT${article.readTime && article.readTime > 0 ? article.readTime : 5}M`,
-  };
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
 
-  const safeJsonLd = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
+  headline: article.title,
+  description,
+
+  url: canonical,
+
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonical,
+  },
+
+  ...(article.publishedAt
+    ? { datePublished: article.publishedAt }
+    : {}),
+
+  ...(article.updatedAt || article.publishedAt
+    ? {
+        dateModified:
+          article.updatedAt || article.publishedAt,
+      }
+    : {}),
+
+  author: {
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+  },
+
+  publisher: {
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+  },
+
+  ...(cover
+    ? {
+        image: [cover],
+      }
+    : {}),
+
+  articleSection: article.category || "Insights",
+
+  timeRequired: `PT${
+    article.readTime && article.readTime > 0
+      ? article.readTime
+      : 5
+  }M`,
+};
+
+const safeJsonLd = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
 
   return (
     <Shell>
@@ -538,7 +622,7 @@ export default async function ArticlePage({ params }: PageProps) {
                       className="group overflow-hidden rounded-[1.25rem] border border-[#EAE6F1] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_55px_rgba(43,25,78,0.08)]"
                     >
                       <Link
-                        href={`/insights/${related.slug}`}
+                        href={`/${related.slug}`}
                         className="block"
                       >
                         <div className="relative aspect-[1.7/1] overflow-hidden bg-[#211735]">

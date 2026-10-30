@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -23,19 +22,31 @@ import { sanityClient } from "@/lib/client";
 
 export const revalidate = 60;
 
+const SITE_URL = "https://www.rhytechglobalsolutions.ca";
+
 export const metadata: Metadata = {
   title: "Technology, SEO & Digital Growth Insights | Rhytech",
   description:
-    "Explore expert insights on SEO in 2026, AI-powered search, web development, cybersecurity, and digital transformation from Rhytech Global Solutions.",
+    "Explore expert insights on SEO, AI-powered search, web development, cybersecurity, and digital transformation from Rhytech Global Solutions.",
+
   alternates: {
-    canonical: "/insights",
+    canonical: `${SITE_URL}/insights`,
   },
+
   openGraph: {
     title: "Insights | Rhytech Global Solutions",
     description:
       "Practical perspectives on SEO, AI-powered search, digital experiences, and business growth.",
-    url: "/insights",
+    url: `${SITE_URL}/insights`,
+    siteName: "Rhytech Global Solutions",
     type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Insights | Rhytech Global Solutions",
+    description:
+      "Practical perspectives on SEO, AI-powered search, digital experiences, and business growth.",
   },
 };
 
@@ -67,31 +78,32 @@ type Article = {
 
 const articlesQuery = `
   *[
-    _type == "article" &&
-    defined(slug.current) &&
-    defined(title) &&
-    defined(body) &&
-    (!defined(publishedAt) || publishedAt <= now())
-  ] | order(featured desc, publishedAt desc) {
-    _id,
-    title,
-    "slug": slug.current,
-    excerpt,
-    category,
-    author,
-    publishedAt,
-    readTime,
-    featured,
-    coverImage {
-      asset->{
-        _id,
-        url
-      },
-      alt
+  _type == "article" &&
+  defined(slug.current) &&
+  defined(title) &&
+  defined(body) &&
+  defined(publishedAt) &&
+  publishedAt <= now()
+] | order(featured desc, publishedAt desc) {
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  category,
+  author,
+  publishedAt,
+  readTime,
+  featured,
+  coverImage {
+    asset->{
+      _id,
+      url
     },
-    seoTitle,
-    seoDescription
-  }
+    alt
+  },
+  seoTitle,
+  seoDescription
+}
 `;
 
 const categoryIcons: Record<string, LucideIcon> = {
@@ -128,18 +140,10 @@ function getCategoryIcon(category?: string): LucideIcon {
   return categoryIcons[category ?? ""] ?? BookOpen;
 }
 
-function getImageUrl(
-  image: SanityImage | undefined,
-  width = 1200,
-) {
+function getImageUrl(image: SanityImage | undefined, width = 1200) {
   if (!image?.asset) return null;
 
-  return imageBuilder
-    .image(image)
-    .width(width)
-    .auto("format")
-    .fit("max")
-    .url();
+  return imageBuilder.image(image).width(width).auto("format").fit("max").url();
 }
 
 function formatDate(date?: string) {
@@ -170,10 +174,7 @@ function ArticleImage({
   article: Article;
   featured?: boolean;
 }) {
-  const imageUrl = getImageUrl(
-    article.coverImage,
-    featured ? 1200 : 800,
-  );
+  const imageUrl = getImageUrl(article.coverImage, featured ? 1200 : 800);
 
   if (imageUrl) {
     return (
@@ -202,13 +203,7 @@ function ArticleImage({
   );
 }
 
-function ArticleCard({
-  article,
-  index,
-}: {
-  article: Article;
-  index: number;
-}) {
+function ArticleCard({ article, index }: { article: Article; index: number }) {
   const Icon = getCategoryIcon(article.category);
   const date = formatDate(article.publishedAt);
 
@@ -272,17 +267,16 @@ export default async function InsightsPage() {
   let articles: Article[] = [];
 
   try {
-   articles = await sanityClient.fetch<Article[]>(
-  articlesQuery,
-  {},
-  { next: { revalidate: 60 } },
-);
+    articles = await sanityClient.fetch<Article[]>(
+      articlesQuery,
+      {},
+      { next: { revalidate: 60 } },
+    );
   } catch (error) {
     console.error("Failed to fetch Sanity insights:", error);
   }
 
-  const featured =
-    articles.find((article) => article.featured) ?? articles[0];
+  const featured = articles.find((article) => article.featured) ?? articles[0];
 
   const remainingArticles = featured
     ? articles.filter((article) => article._id !== featured._id)
@@ -320,8 +314,8 @@ export default async function InsightsPage() {
               <p className="mt-7 max-w-2xl text-base leading-8 text-[#716B80] sm:text-lg">
                 Explore practical insights on SEO, AI-powered search,
                 cybersecurity, web development, and digital transformation.
-                Ideas to help your business make smarter digital decisions
-                and build for long-term growth.
+                Ideas to help your business make smarter digital decisions and
+                build for long-term growth.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 text-xs text-[#777084]">
