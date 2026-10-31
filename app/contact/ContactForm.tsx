@@ -2,7 +2,13 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { ArrowUpRight, CheckCircle2, RotateCcw } from "lucide-react";
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  RotateCcw,
+  LoaderCircle,
+  AlertCircle,
+} from "lucide-react";
 
 const services = [
   "Software Development",
@@ -23,46 +29,92 @@ const services = [
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
+
+    if (loading) return;
+
+    setLoading(true);
+    setError("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      company: String(formData.get("company") || ""),
+      phone: String(formData.get("phone") || ""),
+      service: String(formData.get("service") || ""),
+      message: String(formData.get("message") || ""),
+      website: String(formData.get("website") || ""),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || "Unable to send your enquiry. Please try again."
+        );
+      }
+
+      form.reset();
+      setSent(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
     <div className="contact-form-wrap">
       {sent ? (
-        <div className="contact-form-success" role="status" aria-live="polite">
+        <div
+          className="contact-form-success"
+          role="status"
+          aria-live="polite"
+        >
           <span className="contact-success-icon">
             <CheckCircle2 size={30} aria-hidden="true" />
           </span>
 
-          <span className="contact-mini-label">FORM PREVIEW COMPLETE</span>
-          <h4>Your enquiry is ready for the next step.</h4>
+          <span className="contact-mini-label">ENQUIRY SENT SUCCESSFULLY</span>
+
+          <h4>Thank you for contacting Rhytech!</h4>
+
           <p>
-            This demo form hasn’t sent or saved your information. Please
-            contact our team directly by email or WhatsApp to share your
-            project details.
+            Your enquiry has been received. Our team will review your
+            requirements and get back to you as soon as possible.
           </p>
 
           <div className="contact-success-actions">
-            <a
-              className="contact-btn-primary"
-              href="https://wa.me/14378707083"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Continue on WhatsApp
-              <ArrowUpRight size={17} aria-hidden="true" />
-            </a>
-
             <button
               type="button"
               className="contact-reset-btn"
-              onClick={() => setSent(false)}
+              onClick={() => {
+                setSent(false);
+                setError("");
+              }}
             >
               <RotateCcw size={15} aria-hidden="true" />
-              Start again
+              Send another enquiry
             </button>
           </div>
         </div>
@@ -76,6 +128,7 @@ export default function ContactForm() {
                 name="name"
                 autoComplete="name"
                 placeholder="Your full name"
+                maxLength={100}
                 required
               />
             </label>
@@ -87,6 +140,7 @@ export default function ContactForm() {
                 name="email"
                 autoComplete="email"
                 placeholder="you@company.com"
+                maxLength={254}
                 required
               />
             </label>
@@ -98,6 +152,7 @@ export default function ContactForm() {
                 name="company"
                 autoComplete="organization"
                 placeholder="Your company name"
+                maxLength={150}
               />
             </label>
 
@@ -108,6 +163,7 @@ export default function ContactForm() {
                 name="phone"
                 autoComplete="tel"
                 placeholder="+1 (000) 000-0000"
+                maxLength={50}
               />
             </label>
 
@@ -117,6 +173,7 @@ export default function ContactForm() {
                 <option value="" disabled>
                   Choose a service
                 </option>
+
                 {services.map((service) => (
                   <option value={service} key={service}>
                     {service}
@@ -131,6 +188,7 @@ export default function ContactForm() {
                 name="message"
                 rows={5}
                 minLength={10}
+                maxLength={5000}
                 placeholder="Tell us about your goals, challenges, timeline or the result you want to achieve..."
                 required
               />
@@ -138,17 +196,60 @@ export default function ContactForm() {
                 A short overview is enough to get the conversation started.
               </small>
             </label>
+
+            {/* Honeypot field for basic bot protection */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                left: "-10000px",
+                width: "1px",
+                height: "1px",
+                overflow: "hidden",
+              }}
+            >
+              <label>
+                Leave this field empty
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </label>
+            </div>
           </div>
+
+          {error && (
+            <div className="contact-form-error" role="alert">
+              <AlertCircle size={17} aria-hidden="true" />
+              <span>{error}</span>
+            </div>
+          )}
 
           <div className="contact-form-submit-row">
-           
-
-            <button type="submit" className="contact-btn-primary">
-              Prepare enquiry
-              <ArrowUpRight size={17} aria-hidden="true" />
+            <button
+              type="submit"
+              className="contact-btn-primary"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  Sending enquiry
+                  <LoaderCircle
+                    size={17}
+                    className="animate-spin"
+                    aria-hidden="true"
+                  />
+                </>
+              ) : (
+                <>
+                  Send enquiry
+                  <ArrowUpRight size={17} aria-hidden="true" />
+                </>
+              )}
             </button>
           </div>
-
         </form>
       )}
     </div>
