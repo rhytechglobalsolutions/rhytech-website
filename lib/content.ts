@@ -234,6 +234,16 @@ export const products = [
       "First month free at launch"
     ],
     "url": "https://www.rhyvidya.com/",
+    "logo": "https://www.rhyvidya.com/assets/rhyvidya-logo-header.webp",
+    "ctaLabel": "Book a free trial class",
+    "ctaUrl": "https://www.rhyvidya.com/",
+    "featureDetails": [
+      "Live online Hindi classes with Saraswathi, a teacher of 25+ years — from first words and script to confident, degree-level proficiency.",
+      "Classes meet live on Google Meet with camera, screen sharing and a digital board, and WhatsApp keeps reminders and quick questions familiar.",
+      "Short practice videos from RhyVidya's teachers stay free to watch on the Rhytech YouTube channel, so learning continues between classes.",
+      "A free assessment places every learner at the right stage — Beginner, Intermediate or Advanced — before classes begin.",
+      "New students experience RhyVidya free for their first month at launch, starting with a free assessment and level placement."
+    ],
     "closing": "Learn Hindi with structure, support and room to grow.",
     "what": "What is RhyVidya?",
     "whatbody": "RhyVidya is an online Hindi teaching platform designed to make learning more accessible through live classes and a growing library of learning resources.",
@@ -252,6 +262,16 @@ export const products = [
       "Venue TV display for match day"
     ],
     "url": "https://www.rhyshuttle.ca/",
+    "logo": "https://www.rhyshuttle.ca/assets/rhyshuttle-logo.png",
+    "ctaLabel": "Open the app",
+    "ctaUrl": "https://tcaob-badminton-leaderboard.vercel.app",
+    "featureDetails": [
+      "Knockout and round-robin fixtures are generated automatically, with points tables that update as results come in — no spreadsheets.",
+      "Players RSVP in the app and join a waitlist when a session fills, replacing scattered WhatsApp polls with one dependable list.",
+      "Session dues are tracked on one board with the exact per-player split, so organizers and players always see who has paid.",
+      "Every result feeds the TrueScore leaderboard and player rankings, giving members a clear record of results and progress over time.",
+      "Brackets, fixtures and results appear on the venue TV board — dark and high-contrast, so scores read clearly across the hall."
+    ],
     "closing": "Less admin around the game. More time to play.",
     "what": "What is RhyShuttle?",
     "whatbody": "RhyShuttle is a badminton club and tournament platform built to run club operations — tournaments, weekly sessions, dues and rankings — and to make player progress easier to follow.",
@@ -270,6 +290,16 @@ export const products = [
       "Support for families abroad"
     ],
     "url": "https://www.rhyseva.com/",
+    "logo": "https://www.rhyseva.com/assets/logo-inline.webp",
+    "ctaLabel": "Book a service",
+    "ctaUrl": "https://www.rhyseva.com/",
+    "featureDetails": [
+      "RhySeva opens one corridor at a time, starting with families in Toronto arranging services in Kanyakumari, Tamil Nadu, with local hiring in place.",
+      "Every task is handled by verified, locally hired staff, and a named RhySeva coordinator owns your request from booking to closure.",
+      "You receive itemized receipts and task updates as work progresses, with completion photos and handover confirmation at the end.",
+      "See the work as it happens — live video, progress photos and before-and-after proof are shared for the services you book.",
+      "You pay RhySeva — never cash to the worker — and payment is released to the worker only after you confirm the work is complete."
+    ],
     "closing": "A trusted person back home.",
     "what": "What is RhySeva?",
     "whatbody": "RhySeva helps people living abroad coordinate selected in-person tasks for loved ones in India, with updates designed to create more visibility and peace of mind.",

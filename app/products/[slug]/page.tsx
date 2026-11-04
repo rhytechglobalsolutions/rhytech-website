@@ -233,6 +233,7 @@ export default async function ProductPage({ params }: PageProps) {
 
           <div className="container pp-hero-layout">
             <div className="pp-hero-copy">
+              <img className="pp-hero-logo" src={product.logo} alt={`${product.title} logo`} />
               <nav className="pp-breadcrumb" aria-label="Breadcrumb">
                 <Link href="/">Home</Link>
                 <span>/</span>
@@ -450,10 +451,7 @@ export default async function ProductPage({ params }: PageProps) {
                   </div>
 
                   <h3>{feature}</h3>
-                  <p>
-                    {feature} is part of the product experience, designed to
-                    support the needs and goals of its intended users.
-                  </p>
+                  <p>{product.featureDetails[index] ?? feature}</p>
                 </article>
               ))}
             </div>
