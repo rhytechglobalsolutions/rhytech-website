@@ -179,6 +179,19 @@ const icons: Record<string, ReactNode> = {
 };
 
 export default function FAQsPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   const [activeCategory, setActiveCategory] = useState("All questions");
   const [search, setSearch] = useState("");
   const [openItems, setOpenItems] = useState<number[]>([0]);
@@ -218,6 +231,12 @@ export default function FAQsPage() {
 
   return (
     <main className="faq-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* Hero */}
       <section className="faq-hero">
         <div className="faq-hero-grid" aria-hidden="true" />

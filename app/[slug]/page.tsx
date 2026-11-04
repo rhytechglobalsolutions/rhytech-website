@@ -443,6 +443,10 @@ const jsonLd = {
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/logo.webp`,
+    },
   },
 
   ...(cover
