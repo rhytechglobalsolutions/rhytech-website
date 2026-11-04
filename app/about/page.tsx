@@ -155,7 +155,7 @@ export default function AboutPage() {
               <div className="about-hero-note">
                 <span className="about-note-line" />
                 <span>
-                  Based in Ottawa, Ontario.
+                  Based in Ontario, Canada.
                   <strong> Working towards possibilities worldwide.</strong>
                 </span>
               </div>

@@ -27,14 +27,6 @@ export default function Home() {
         url: site.url,
         email: site.email,
         telephone: site.phone,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "302, 90 Woodridge Crescent",
-          addressLocality: "Ottawa",
-          addressRegion: "ON",
-          postalCode: "K2B 7T1",
-          addressCountry: "CA",
-        },
         sameAs: [
           "https://www.instagram.com/rhytechglobalsolutions/",
           "https://www.facebook.com/",
@@ -48,14 +40,6 @@ export default function Home() {
         url: site.url,
         telephone: site.phone,
         email: site.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "302, 90 Woodridge Crescent",
-          addressLocality: "Ottawa",
-          addressRegion: "ON",
-          postalCode: "K2B 7T1",
-          addressCountry: "CA",
-        },
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",

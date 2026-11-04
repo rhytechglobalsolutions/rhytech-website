@@ -34,7 +34,7 @@ const faqs = [
     category: "General",
     question: "What is Rhytech Global Solutions?",
     answer:
-      "Rhytech Global Solutions Inc. is a digital solutions company based in Ottawa, Ontario, Canada. We help businesses strengthen their digital presence through software development, website design, mobile applications, cloud services, data solutions, digital marketing and more.",
+      "Rhytech Global Solutions Inc. is a digital solutions company based in Ontario, Canada. We help businesses strengthen their digital presence through software development, website design, mobile applications, cloud services, data solutions, digital marketing and more.",
   },
   {
     category: "General",
@@ -46,7 +46,7 @@ const faqs = [
     category: "General",
     question: "Do you work with clients outside Canada?",
     answer:
-      "Yes. While based in Ottawa, Ontario, we can work with businesses in Canada and internationally. Project communication, timelines and delivery arrangements are agreed upon according to each client's requirements.",
+      "Yes. While based in Ontario, Canada, we can work with businesses in Canada and internationally. Project communication, timelines and delivery arrangements are agreed upon according to each client's requirements.",
   },
   {
     category: "General",
@@ -519,7 +519,7 @@ export default function FAQsPage() {
                   <Globe2 size={18} />
                 </span>
                 <div>
-                  <strong>Based in Ottawa, Canada</strong>
+                  <strong>Based in Ontario, Canada</strong>
                   <span>Working with businesses worldwide</span>
                 </div>
               </div>
