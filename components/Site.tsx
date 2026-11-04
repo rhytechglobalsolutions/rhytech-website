@@ -90,7 +90,7 @@ export function ProductGrid() {
     <div className="product-grid">
       {products.map((p, i) => (
         <article className="product-card" key={p.slug}>
-          <div className="product-symbol">{p.title.slice(0, 1)}</div>
+          <div className="product-logo-panel"><img className="product-logo" src={p.logo} alt={`${p.title} logo`} loading="lazy" /></div>
           <h3>{p.title}</h3>
           <div className="tagline">{p.tagline}</div>
           <p>{p.description}</p>
@@ -106,14 +106,7 @@ export function ProductGrid() {
             <Link className="text-link" href={`/products/${p.slug}`}>
               Learn more <ArrowRight size={15} />
             </Link>
-            <a
-              className="text-link"
-              href={p.url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Try live <ArrowUpRight size={14} />
-            </a>
+            <a className="text-link" href={p.ctaUrl} target="_blank" rel="noreferrer">{p.ctaLabel} <ArrowUpRight size={14} /></a>
           </div>
         </article>
       ))}

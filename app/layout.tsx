@@ -55,7 +55,10 @@ twitter: {
   
 
   icons: {
-    icon: "/logo.webp",
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/logo.webp", type: "image/webp" },
+    ],
     shortcut: "/logo.webp",
   },
 

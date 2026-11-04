@@ -223,6 +223,21 @@ export default function Home() {
           </div>
         </section>
         <PartnersSlider />
+        <section id="products" className="section">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <Eyebrow>Built by Rhytech</Eyebrow>
+                <h2>Products with a purpose.</h2>
+              </div>
+              <p>
+                We also develop focused digital products that solve specific
+                needs for learners, sports communities and families.
+              </p>
+            </div>
+            <ProductGrid />
+          </div>
+        </section>
         <section className="section">
           <div className="container">
             <div className="section-head">
@@ -362,21 +377,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-        <section id="products" className="section">
-          <div className="container">
-            <div className="section-head">
-              <div>
-                <Eyebrow>Built by Rhytech</Eyebrow>
-                <h2>Products with a purpose.</h2>
-              </div>
-              <p>
-                We also develop focused digital products that solve specific
-                needs for learners, sports communities and families.
-              </p>
-            </div>
-            <ProductGrid />
           </div>
         </section>
        
