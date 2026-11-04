@@ -192,7 +192,7 @@ export default function Footer() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={social.icon}
-                    alt=""
+                    alt={social.label}
                     width={16}
                     height={16}
                     loading="lazy"
@@ -317,7 +317,7 @@ export default function Footer() {
                 <address className="pt-1 not-italic">
                   {site.name}
                   <br />
-                  {site.address}
+                  Ontario, Canada
                 </address>
               </div>
 

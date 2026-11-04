@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   Clock3,
   Mail,
-  MapPin,
   MessageCircle,
   Phone,
   ShieldCheck,
@@ -70,13 +69,6 @@ const contactItems = [
     value: site.proposalsEmail,
     href: `mailto:${site.proposalsEmail}`,
     detail: "Send RFPs, proposals and partnership briefs",
-  },
-  {
-    icon: MapPin,
-    label: "Our office",
-    value: site.address,
-    href: "https://maps.google.com/?q=302+90+Woodridge+Crescent+Ottawa+ON+K2B+7T1",
-    detail: "Ottawa, Ontario, Canada",
   },
 ];
 
@@ -263,16 +255,6 @@ export default function ContactPage() {
                         className="contact-method"
                         href={item.href}
                         key={item.label}
-                        target={
-                          item.label === "Our office"
-                            ? "_blank"
-                            : undefined
-                        }
-                        rel={
-                          item.label === "Our office"
-                            ? "noopener noreferrer"
-                            : undefined
-                        }
                       >
                         <span className="contact-method-icon">
                           <Icon
