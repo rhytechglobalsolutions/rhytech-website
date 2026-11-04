@@ -70,7 +70,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "https://www.rhytechglobalsolutions.ca/images/rhytech-og-image.pnh",
+          url: "https://www.rhytechglobalsolutions.ca/images/rhytech-og-image.png",
           width: 1200,
           height: 630,
           alt: "Products Rhytech Global Solutions",

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -16,6 +17,11 @@ import {
 } from "@/components/Site";
 import { site } from "@/lib/content";
 import PartnersSlider from "@/components/PartnersSlider";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://www.rhytechglobalsolutions.ca" },
+};
+
 export default function Home() {
   const schema = {
     "@context": "https://schema.org",

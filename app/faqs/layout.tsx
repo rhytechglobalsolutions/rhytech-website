@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions | Digital Services",
+  title: "Frequently Asked Questions",
 
   description:
     "Find answers about Rhytech Global Solutions, including software development, website design, pricing, technology, SEO, GEO, AEO and digital marketing services.",
