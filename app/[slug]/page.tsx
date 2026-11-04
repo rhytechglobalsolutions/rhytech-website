@@ -41,7 +41,7 @@ type Article = {
   category?: string;
   author?: string;
   publishedAt?: string;
-  updatedAt?: string;
+  _updatedAt?: string;
   readTime?: number;
   seoTitle?: string;
   seoDescription?: string;
@@ -249,6 +249,7 @@ async function getArticle(slug: string): Promise<Article | null> {
 }
 
 
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -259,7 +260,7 @@ export async function generateMetadata({
 
     if (!article) {
       return {
-        title: "Article Not Found | Rhytech Insights",
+        title: "Article Not Found",
         robots: {
           index: false,
           follow: false,
@@ -267,14 +268,19 @@ export async function generateMetadata({
       };
     }
 
+    // The global layout automatically appends:
+    // | Rhytech Global Solutions
+    // Therefore, do not include the brand suffix here.
     const title =
-      article.seoTitle ||
-      `${article.title} | Rhytech Insights`;
+      article.seoTitle?.replace(
+        /\s*[|–-]\s*(Rhytech Global Solutions|Rhytech Insights)\s*$/i,
+        ""
+      ).trim() || article.title;
 
     const description =
       article.seoDescription ||
       article.excerpt ||
-      `Read ${article.title} on Rhytech Insights for practical perspectives on technology and digital growth.`;
+      `Read ${article.title} for practical perspectives on technology and digital growth.`;
 
     const canonical = `${SITE_URL}/${article.slug}`;
     const cover = imageUrl(article.coverImage, 1200);
@@ -298,8 +304,8 @@ export async function generateMetadata({
           ? { publishedTime: article.publishedAt }
           : {}),
 
-        ...(article.updatedAt
-          ? { modifiedTime: article.updatedAt }
+        ...(article._updatedAt
+          ? { modifiedTime: article._updatedAt }
           : {}),
 
         authors: [SITE_NAME],
@@ -310,7 +316,9 @@ export async function generateMetadata({
                 {
                   url: cover,
                   width: 1200,
-                  alt: article.coverImage?.alt || article.title,
+                  alt:
+                    article.coverImage?.alt ||
+                    article.title,
                 },
               ],
             }
@@ -327,7 +335,9 @@ export async function generateMetadata({
               images: [
                 {
                   url: cover,
-                  alt: article.coverImage?.alt || article.title,
+                  alt:
+                    article.coverImage?.alt ||
+                    article.title,
                 },
               ],
             }
@@ -345,7 +355,10 @@ export async function generateMetadata({
       },
     };
   } catch (error) {
-    console.error("Unable to generate article metadata:", error);
+    console.error(
+      "Unable to generate article metadata:",
+      error
+    );
 
     return {
       title: "Rhytech Insights",
@@ -356,6 +369,7 @@ export async function generateMetadata({
     };
   }
 }
+
 
 
 export default async function ArticlePage({ params }: PageProps) {
@@ -412,10 +426,10 @@ const jsonLd = {
     ? { datePublished: article.publishedAt }
     : {}),
 
-  ...(article.updatedAt || article.publishedAt
+  ...(article._updatedAt || article.publishedAt
     ? {
         dateModified:
-          article.updatedAt || article.publishedAt,
+          article._updatedAt || article.publishedAt,
       }
     : {}),
 

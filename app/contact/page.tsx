@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -10,12 +9,13 @@ import {
   Phone,
   ShieldCheck,
 } from "lucide-react";
+
 import { Shell, Eyebrow } from "@/components/Site";
 import { site } from "@/lib/content";
 import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Rhytech Global Solutions | Get a Project Quote",
+  title: "Contact Us | Get a Project Quote",
   description:
     "Talk to Rhytech Global Solutions about software development, website design, mobile apps, cloud services, SEO and digital marketing. Based in Ottawa, Ontario, Canada, serving clients worldwide.",
   alternates: {
@@ -28,12 +28,24 @@ export const metadata: Metadata = {
     url: "https://www.rhytechglobalsolutions.ca/contact",
     siteName: "Rhytech Global Solutions",
     type: "website",
+    images: [
+    {
+      url: "https://www.rhytechglobalsolutions.ca/images/rhytech-og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Contact Rhytech Global Solutions",
+    },
+  ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact Rhytech Global Solutions",
     description:
       "Have a project in mind? Let's discuss the right next step.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -76,11 +88,17 @@ export default function ContactPage() {
     <Shell>
       <main className="contact-page">
         <section className="contact-hero">
-          <div className="contact-hero-grid" aria-hidden="true" />
+          <div
+            className="contact-hero-grid"
+            aria-hidden="true"
+          />
 
           <div className="container contact-hero-inner">
             <div className="contact-hero-copy">
-              <nav className="contact-breadcrumb" aria-label="Breadcrumb">
+              <nav
+                className="contact-breadcrumb"
+                aria-label="Breadcrumb"
+              >
                 <Link href="/">Home</Link>
                 <span aria-hidden="true">/</span>
                 <span>Contact</span>
@@ -99,9 +117,15 @@ export default function ContactPage() {
               </p>
 
               <div className="contact-hero-actions">
-                <a href="#project-enquiry" className="contact-btn-primary">
+                <a
+                  href="#project-enquiry"
+                  className="contact-btn-primary"
+                >
                   Discuss your project
-                  <ArrowUpRight size={17} aria-hidden="true" />
+                  <ArrowUpRight
+                    size={17}
+                    aria-hidden="true"
+                  />
                 </a>
 
                 <a
@@ -110,15 +134,22 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="contact-btn-secondary"
                 >
-                  <MessageCircle size={17} aria-hidden="true" />
+                  <MessageCircle
+                    size={17}
+                    aria-hidden="true"
+                  />
                   Chat on WhatsApp
                 </a>
               </div>
 
               <div className="contact-trust-line">
                 <span className="contact-trust-icon">
-                  <ShieldCheck size={17} aria-hidden="true" />
+                  <ShieldCheck
+                    size={17}
+                    aria-hidden="true"
+                  />
                 </span>
+
                 <span>
                   A straightforward conversation. No pressure, just a
                   clearer next step.
@@ -126,13 +157,17 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="contact-hero-visual" aria-hidden="true">
+            <div
+              className="contact-hero-visual"
+              aria-hidden="true"
+            >
               <div className="contact-visual-orbit contact-orbit-one" />
               <div className="contact-visual-orbit contact-orbit-two" />
 
               <div className="contact-visual-card">
                 <div className="contact-visual-card-top">
                   <span className="contact-visual-mark">R</span>
+
                   <span className="contact-visual-status">
                     <span />
                     Ready to connect
@@ -143,7 +178,11 @@ export default function ContactPage() {
                   <span className="contact-visual-kicker">
                     THE NEXT STEP
                   </span>
-                  <h2>Good things begin with a conversation.</h2>
+
+                  <h2>
+                    Good things begin with a conversation.
+                  </h2>
+
                   <p>
                     Your goals. Our expertise. A plan built around what
                     matters to your business.
@@ -160,6 +199,7 @@ export default function ContactPage() {
                 <span className="contact-floating-icon">
                   <MessageCircle size={17} />
                 </span>
+
                 <span>
                   <strong>Let’s talk</strong>
                   <small>Your project starts here</small>
@@ -168,7 +208,10 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="contact-hero-bottom" aria-hidden="true">
+          <div
+            className="contact-hero-bottom"
+            aria-hidden="true"
+          >
             <span>Strategy</span>
             <i />
             <span>Design</span>
@@ -184,6 +227,7 @@ export default function ContactPage() {
             <div className="contact-section-heading">
               <div>
                 <Eyebrow>Get in touch</Eyebrow>
+
                 <h2>
                   Let’s make your
                   <span> next move count.</span>
@@ -202,7 +246,9 @@ export default function ContactPage() {
                   <span className="contact-mini-label">
                     CONTACT INFORMATION
                   </span>
+
                   <h3>Reach the right people.</h3>
+
                   <p>
                     Choose whichever way is most convenient for you.
                   </p>
@@ -218,7 +264,9 @@ export default function ContactPage() {
                         href={item.href}
                         key={item.label}
                         target={
-                          item.label === "Our office" ? "_blank" : undefined
+                          item.label === "Our office"
+                            ? "_blank"
+                            : undefined
                         }
                         rel={
                           item.label === "Our office"
@@ -227,14 +275,19 @@ export default function ContactPage() {
                         }
                       >
                         <span className="contact-method-icon">
-                          <Icon size={19} aria-hidden="true" />
+                          <Icon
+                            size={19}
+                            aria-hidden="true"
+                          />
                         </span>
 
                         <span className="contact-method-copy">
                           <strong>{item.label}</strong>
+
                           <span className="contact-method-value">
                             {item.value}
                           </span>
+
                           <small>{item.detail}</small>
                         </span>
 
@@ -255,7 +308,10 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                 >
                   <span className="contact-whatsapp-icon">
-                    <MessageCircle size={20} aria-hidden="true" />
+                    <MessageCircle
+                      size={20}
+                      aria-hidden="true"
+                    />
                   </span>
 
                   <span>
@@ -263,18 +319,25 @@ export default function ContactPage() {
                     <small>Connect with us on WhatsApp.</small>
                   </span>
 
-                  <ArrowUpRight size={18} aria-hidden="true" />
+                  <ArrowUpRight
+                    size={18}
+                    aria-hidden="true"
+                  />
                 </a>
 
                 <div className="contact-hours">
                   <span className="contact-hours-icon">
-                    <Clock3 size={18} aria-hidden="true" />
+                    <Clock3
+                      size={18}
+                      aria-hidden="true"
+                    />
                   </span>
 
                   <div>
                     <strong>Business hours</strong>
                     <p>Monday – Saturday</p>
                     <p>9:00 am – 7:00 pm</p>
+
                     <span className="contact-closed">
                       Sunday · Closed
                     </span>
@@ -282,12 +345,17 @@ export default function ContactPage() {
                 </div>
               </aside>
 
-              <div className="contact-form-column" id="project-enquiry">
+              <div
+                className="contact-form-column"
+                id="project-enquiry"
+              >
                 <div className="contact-form-heading">
                   <span className="contact-mini-label">
                     PROJECT ENQUIRY
                   </span>
+
                   <h3>Tell us what you have in mind.</h3>
+
                   <p>
                     A few details will help us understand what you need.
                   </p>
@@ -298,8 +366,6 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-
-       
       </main>
     </Shell>
   );

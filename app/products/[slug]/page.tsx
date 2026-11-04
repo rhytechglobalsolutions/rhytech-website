@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -36,30 +35,58 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+
   const product = products.find((item) => item.slug === slug);
 
-  if (!product) return {};
+  if (!product) {
+    return {
+      title: "Product Not Found",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
 
-  const title = `${product.title} | Product by Rhytech Global Solutions`;
-  const description = `${product.description} Discover ${product.title} by Rhytech Global Solutions, based in Ontario, Canada and serving users worldwide.`;
+  const title = product.title;
+
+  const description = product.description;
+
+  const canonical = `${site.url}/products/${product.slug}`;
 
   return {
     title,
     description,
+
     alternates: {
-      canonical: `/products/${product.slug}`,
+      canonical,
     },
+
     openGraph: {
-      title,
+      title: `${title} | Rhytech Global Solutions`,
       description,
-      url: `${site.url}/products/${product.slug}`,
+      url: canonical,
       siteName: "Rhytech Global Solutions",
       type: "website",
+      images: [
+        {
+          url: "https://www.rhytechglobalsolutions.ca/images/rhytech-og-image.pnh",
+          width: 1200,
+          height: 630,
+          alt: "Products Rhytech Global Solutions",
+        },
+      ],
     },
+
     twitter: {
       card: "summary_large_image",
-      title,
+      title: `${title} | Rhytech Global Solutions`,
       description,
+    },
+
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
@@ -97,24 +124,85 @@ export default async function ProductPage({ params }: PageProps) {
     },
   ];
 
+  const canonicalUrl = `${site.url}/products/${product.slug}`;
+
+  const organizationId = `${site.url}/#organization`;
+  const websiteId = `${site.url}/#website`;
+  const webpageId = `${canonicalUrl}/#webpage`;
+  const softwareId = `${canonicalUrl}/#software`;
+  const faqId = `${canonicalUrl}/#faq`;
+
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": organizationId,
+        name: site.legalName,
+        url: site.url,
+      },
+      {
+        "@type": "WebSite",
+        "@id": websiteId,
+        name: "Rhytech Global Solutions",
+        url: site.url,
+        publisher: {
+          "@id": organizationId,
+        },
+      },
+      {
+        "@type": "WebPage",
+        "@id": webpageId,
+        url: canonicalUrl,
+        name: product.title,
+        description: product.description,
+        isPartOf: {
+          "@id": websiteId,
+        },
+        about: {
+          "@id": softwareId,
+        },
+        breadcrumb: {
+          "@id": `${canonicalUrl}/#breadcrumb`,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}/#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: site.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: product.title,
+            item: canonicalUrl,
+          },
+        ],
+      },
+      {
         "@type": "SoftwareApplication",
+        "@id": softwareId,
         name: product.title,
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         description: product.description,
         url: product.url,
+        mainEntityOfPage: {
+          "@id": webpageId,
+        },
         publisher: {
-          "@type": "Organization",
-          name: site.legalName,
-          url: site.url,
+          "@id": organizationId,
         },
       },
       {
         "@type": "FAQPage",
+        "@id": faqId,
+        url: `${canonicalUrl}#faqs`,
         mainEntity: faqs.map((faq) => ({
           "@type": "Question",
           name: faq.q,
@@ -148,14 +236,11 @@ export default async function ProductPage({ params }: PageProps) {
               <nav className="pp-breadcrumb" aria-label="Breadcrumb">
                 <Link href="/">Home</Link>
                 <span>/</span>
-                <Link href="/products">Products</Link>
-                <span>/</span>
                 <span aria-current="page">{product.title}</span>
               </nav>
 
               <div className="pp-product-label">
-                <span className="pp-live-dot" />
-                A Rhytech product
+                <span className="pp-live-dot" />A Rhytech product
               </div>
 
               <Eyebrow>{product.title}</Eyebrow>
@@ -164,15 +249,14 @@ export default async function ProductPage({ params }: PageProps) {
                 Meet
                 <span className="pp-title-accent"> {product.title}.</span>
                 <span className="pp-title-second">
-                  {" "}Made for a better experience.
+                  {" "}
+                  Made for a better experience.
                 </span>
               </h1>
 
               <p className="pp-tagline">{product.tagline}</p>
 
-              <p className="pp-hero-description">
-                {product.description}
-              </p>
+              <p className="pp-hero-description">{product.description}</p>
 
               <div className="pp-hero-actions">
                 <a
@@ -185,10 +269,7 @@ export default async function ProductPage({ params }: PageProps) {
                   <ArrowUpRight size={17} />
                 </a>
 
-                <Link
-                  href="/contact"
-                  className="pp-button pp-button-outline"
-                >
+                <Link href="/contact" className="pp-button pp-button-outline">
                   Learn more
                   <ArrowRight size={17} />
                 </Link>
@@ -234,19 +315,13 @@ export default async function ProductPage({ params }: PageProps) {
                     <span />
                     <span />
                   </div>
-                  <span className="pp-window-caption">
-                    {product.title}
-                  </span>
+                  <span className="pp-window-caption">{product.title}</span>
                   <Sparkles size={15} />
                 </div>
 
                 <div className="pp-window-content">
-                  <div className="pp-window-overline">
-                    INTRODUCING
-                  </div>
-                  <div className="pp-window-title">
-                    {product.title}
-                  </div>
+                  <div className="pp-window-overline">INTRODUCING</div>
+                  <div className="pp-window-title">{product.title}</div>
                   <p className="pp-window-tagline">{product.tagline}</p>
 
                   <div className="pp-window-divider" />
@@ -259,7 +334,9 @@ export default async function ProductPage({ params }: PageProps) {
                   <div className="pp-window-feature-list">
                     {product.features.slice(0, 3).map((feature) => (
                       <div className="pp-window-feature" key={feature}>
-                        <span><Check size={12} /></span>
+                        <span>
+                          <Check size={12} />
+                        </span>
                         <span>{feature}</span>
                       </div>
                     ))}
@@ -288,8 +365,6 @@ export default async function ProductPage({ params }: PageProps) {
                 </span>
               </div>
 
-             
-
               <div className="pp-visual-bottom-label">
                 <span />
                 Technology that serves a purpose
@@ -299,9 +374,15 @@ export default async function ProductPage({ params }: PageProps) {
 
           <div className="pp-hero-footer">
             <div className="container pp-hero-footer-inner">
-              <span><CheckCircle2 size={15} /> Purpose-led products</span>
-              <span><Layers3 size={15} /> Thoughtful experiences</span>
-              <span><Compass size={15} /> Built to solve real needs</span>
+              <span>
+                <CheckCircle2 size={15} /> Purpose-led products
+              </span>
+              <span>
+                <Layers3 size={15} /> Thoughtful experiences
+              </span>
+              <span>
+                <Compass size={15} /> Built to solve real needs
+              </span>
             </div>
           </div>
         </section>
@@ -373,8 +454,6 @@ export default async function ProductPage({ params }: PageProps) {
                     {feature} is part of the product experience, designed to
                     support the needs and goals of its intended users.
                   </p>
-
-                
                 </article>
               ))}
             </div>
@@ -444,7 +523,9 @@ export default async function ProductPage({ params }: PageProps) {
                 </span>
                 <div>
                   <strong>A practical starting point</strong>
-                  <p>Explore the product directly to understand how it works.</p>
+                  <p>
+                    Explore the product directly to understand how it works.
+                  </p>
                 </div>
                 <CheckCircle2 size={18} />
               </div>
@@ -525,8 +606,8 @@ export default async function ProductPage({ params }: PageProps) {
                   {product.title}?
                 </h2>
                 <p>
-                  Visit the live product or contact Rhytech Global Solutions
-                  to learn more about its purpose and capabilities.
+                  Visit the live product or contact Rhytech Global Solutions to
+                  learn more about its purpose and capabilities.
                 </p>
               </div>
 
@@ -555,8 +636,8 @@ export default async function ProductPage({ params }: PageProps) {
             <div className="pp-final-note">
               <ShieldCheck size={15} />
               <span>
-                {product.title} is part of the Rhytech Global Solutions
-                product portfolio.
+                {product.title} is part of the Rhytech Global Solutions product
+                portfolio.
               </span>
             </div>
           </div>

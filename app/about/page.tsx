@@ -17,7 +17,7 @@ import { Shell, Eyebrow } from "@/components/Site";
 import { site } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "About Rhytech Global Solutions | Technology, Design & Growth",
+  title: "About Rhytech | Digital Solutions",
   description:
     "Discover Rhytech Global Solutions, an Ottawa, Ontario-based digital solutions company helping businesses with software development, web design, mobile applications, cloud services, SEO and digital marketing worldwide.",
   alternates: {
@@ -30,12 +30,24 @@ export const metadata: Metadata = {
     url: "https://www.rhytechglobalsolutions.ca/about",
     siteName: "Rhytech Global Solutions",
     type: "website",
+    images: [
+    {
+      url: "https://www.rhytechglobalsolutions.ca/images/rhytech-og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Services Rhytech Global Solutions",
+    },
+  ],
   },
   twitter: {
     card: "summary_large_image",
     title: "About Rhytech Global Solutions",
     description:
       "Meet the approach behind our digital solutions, from strategy and design to technology and growth.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

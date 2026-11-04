@@ -53,7 +53,16 @@ export async function generateMetadata({
       description,
       url: `${site.url}/services/${service.slug}`,
       type: "website",
+      
       siteName: "Rhytech Global Solutions",
+      images: [
+    {
+      url: "https://www.rhytechglobalsolutions.ca/images/rhytech-og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Services Rhytech Global Solutions",
+    },
+  ],
     },
     twitter: {
       card: "summary_large_image",

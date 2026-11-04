@@ -22,10 +22,12 @@ import { sanityClient } from "@/lib/client";
 
 export const revalidate = 60;
 
+
 const SITE_URL = "https://www.rhytechglobalsolutions.ca";
 
 export const metadata: Metadata = {
-  title: "Technology, SEO & Digital Growth Insights | Rhytech",
+  title: "SEO & Technology Insights",
+
   description:
     "Explore expert insights on SEO, AI-powered search, web development, cybersecurity, and digital transformation from Rhytech Global Solutions.",
 
@@ -34,21 +36,35 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Insights | Rhytech Global Solutions",
+    title: "SEO & Technology Insights | Rhytech Global Solutions",
     description:
       "Practical perspectives on SEO, AI-powered search, digital experiences, and business growth.",
     url: `${SITE_URL}/insights`,
     siteName: "Rhytech Global Solutions",
     type: "website",
+    images: [
+    {
+      url: "https://www.rhytechglobalsolutions.ca/images/rhytech-og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Insights Rhytech Global Solutions",
+    },
+  ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Insights | Rhytech Global Solutions",
+    title: "SEO & Technology Insights | Rhytech Global Solutions",
     description:
       "Practical perspectives on SEO, AI-powered search, digital experiences, and business growth.",
   },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
+
 
 const imageBuilder = imageUrlBuilder(sanityClient);
 
