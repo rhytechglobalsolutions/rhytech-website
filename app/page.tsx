@@ -25,6 +25,7 @@ export default function Home() {
         "@id": site.url + "/#organization",
         name: site.legalName,
         url: site.url,
+        logo: site.url + "/logo.webp",
         email: site.email,
         telephone: site.phone,
         address: {

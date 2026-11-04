@@ -129,8 +129,13 @@ export default async function ProductPage({ params }: PageProps) {
   const organizationId = `${site.url}/#organization`;
   const websiteId = `${site.url}/#website`;
   const webpageId = `${canonicalUrl}/#webpage`;
-  const softwareId = `${canonicalUrl}/#software`;
+  const productId = `${canonicalUrl}/#product`;
   const faqId = `${canonicalUrl}/#faq`;
+  const productLogos: Record<string, string> = {
+    rhyvidya: "https://www.rhyvidya.com/assets/rhyvidya-logo-header.webp",
+    rhyshuttle: "https://www.rhyshuttle.ca/assets/rhyshuttle-logo.png",
+    rhyseva: "https://www.rhyseva.com/assets/logo-inline.webp",
+  };
 
   const schema = {
     "@context": "https://schema.org",
@@ -140,6 +145,7 @@ export default async function ProductPage({ params }: PageProps) {
         "@id": organizationId,
         name: site.legalName,
         url: site.url,
+        logo: `${site.url}/logo.webp`,
       },
       {
         "@type": "WebSite",
@@ -160,7 +166,7 @@ export default async function ProductPage({ params }: PageProps) {
           "@id": websiteId,
         },
         about: {
-          "@id": softwareId,
+          "@id": productId,
         },
         breadcrumb: {
           "@id": `${canonicalUrl}/#breadcrumb`,
@@ -184,21 +190,37 @@ export default async function ProductPage({ params }: PageProps) {
           },
         ],
       },
-      {
-        "@type": "SoftwareApplication",
-        "@id": softwareId,
-        name: product.title,
-        applicationCategory: "BusinessApplication",
-        operatingSystem: "Web",
-        description: product.description,
-        url: product.url,
-        mainEntityOfPage: {
-          "@id": webpageId,
-        },
-        publisher: {
-          "@id": organizationId,
-        },
-      },
+      product.slug === "rhyseva"
+        ? {
+            "@type": "Service",
+            "@id": productId,
+            name: product.title,
+            description: product.description,
+            url: product.url,
+            image: productLogos[product.slug],
+            serviceType: "NRI family support services",
+            areaServed: ["Canada", "India"],
+            provider: {
+              "@id": organizationId,
+            },
+            mainEntityOfPage: {
+              "@id": webpageId,
+            },
+          }
+        : {
+            "@type": "Product",
+            "@id": productId,
+            name: product.title,
+            description: product.description,
+            url: product.url,
+            image: productLogos[product.slug],
+            brand: {
+              "@id": organizationId,
+            },
+            mainEntityOfPage: {
+              "@id": webpageId,
+            },
+          },
       {
         "@type": "FAQPage",
         "@id": faqId,
