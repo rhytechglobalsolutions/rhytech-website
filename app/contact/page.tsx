@@ -17,7 +17,7 @@ import ContactForm from "./ContactForm";
 export const metadata: Metadata = {
   title: "Contact Us | Get a Project Quote",
   description:
-    "Talk to Rhytech Global Solutions about software development, website design, mobile apps, cloud services, SEO and digital marketing. Based in Ottawa, Ontario, Canada, serving clients worldwide.",
+    "Contact Rhytech Global Solutions about software, web design, mobile apps, cloud, SEO and digital marketing — Ontario-based, serving clients worldwide.",
   alternates: {
     canonical: "https://www.rhytechglobalsolutions.ca/contact",
   },

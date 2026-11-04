@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
 
   title: {
-    default: "Rhytech Global Solutions | Digital Transformation & Technology",
+    default: "Rhytech Global Solutions | Digital Transformation",
     template: "%s | Rhytech Global Solutions",
   },
 

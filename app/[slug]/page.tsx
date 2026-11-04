@@ -286,7 +286,8 @@ export async function generateMetadata({
     const cover = imageUrl(article.coverImage, 1200);
 
     return {
-      title,
+      // Article titles render without the layout's brand suffix so they stay within 60 characters.
+      title: { absolute: title },
       description,
 
       alternates: {

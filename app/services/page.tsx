@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Shell, Eyebrow, ServiceGrid, CTA } from "@/components/Site";
 
 export const metadata: Metadata = {
-  title: "Technology, Design & Marketing Services",
+  title: "Technology, Design & Marketing",
   description:
-    "Explore Rhytech Global Solutions services in Ontario, Canada—from software development and web design to SEO, digital marketing, cloud and ERP. Serving clients worldwide.",
+    "Explore Rhytech Global Solutions services in Ontario, Canada — software development, web design, SEO, digital marketing, cloud and ERP.",
   alternates: {
     canonical: "https://www.rhytechglobalsolutions.ca/services",
   },

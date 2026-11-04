@@ -19,7 +19,7 @@ import { site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About Rhytech | Digital Solutions",
   description:
-    "Discover Rhytech Global Solutions, an Ottawa, Ontario-based digital solutions company helping businesses with software development, web design, mobile applications, cloud services, SEO and digital marketing worldwide.",
+    "Discover Rhytech Global Solutions — an Ontario-based digital solutions company for software, web design, mobile apps, cloud, SEO and digital marketing.",
   alternates: {
     canonical: "https://www.rhytechglobalsolutions.ca/about",
   },

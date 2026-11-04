@@ -39,8 +39,8 @@ export async function generateMetadata({
 
   if (!service) return {};
 
-  const title = `${service.title} in Ontario, Canada`;
-  const description = `${service.description} Rhytech Global Solutions supports businesses in Ontario, Canada and worldwide.`;
+  const title = `${service.title} in Ontario`;
+  const description = service.description;
 
   return {
     title,
